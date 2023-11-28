@@ -65,6 +65,7 @@ class Store {
    * @param code
    */
   selectItem(code) {
+    console.log(code);
     this.setState({
       ...this.state,
       list: this.state.list.map(item => {
