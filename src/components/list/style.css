@@ -1,7 +1,37 @@
-.List {
+.List{
+  width: 100%;
 
+  margin-bottom: 20px;
 }
 
 .List-item {
   border-bottom: 1px dashed #ccc;
+}
+
+.List-item:first-child {
+  border-top: 1px dashed #ccc;
+}
+
+.List-sum{
+  margin-right: 120px;
+
+  text-align: right;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.List-sum span{
+  margin-left: 53px;
+}
+
+.Item-price,.Item-quantity {
+  width: max-content;
+}
+
+.Item-quantity {
+  margin-left: 62px;
+}
+
+.Item-button{
+  margin-left: 24px;
 }
