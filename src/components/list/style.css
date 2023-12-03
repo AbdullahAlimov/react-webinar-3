@@ -1,6 +1,9 @@
 .List{
-  width: 100%;
+  list-style: "";
 
+  width: 100%;
+  
+  padding: 0;
   margin-bottom: 20px;
 }
 
@@ -22,16 +25,4 @@
 
 .List-sum span{
   margin-left: 53px;
-}
-
-.Item-price,.Item-quantity {
-  width: max-content;
-}
-
-.Item-quantity {
-  margin-left: 62px;
-}
-
-.Item-button{
-  margin-left: 24px;
 }

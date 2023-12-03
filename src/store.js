@@ -32,12 +32,41 @@ class Store {
   }
 
   /**
-   * Получение записи по коду
-   * @param code
+ * Установка состояния
+ * @param newState {Object}
+ */
+  setState(newState) {
+    this.state = newState;
+    // Вызываем всех слушателей
+    for (const listener of this.listeners) listener();
+  }
+
+    /**
+   * Возвращает корзину с уникальными значениями
+   * @returns {Array} 
    */
-  getItem(code) {
-    return (this.state.list.find(item => item.code === code));
-  };
+  getUniqCart(){
+    return Array.from(new Set(this.state.cart.map(item => item.code))).map(code => this.state.list.find(item => item.code === code))
+  }
+
+  deleteCartItem(code) {
+    this.setState({
+      ...this.state,
+      // Новый список, в котором не будет удаляемой записи(ей)
+      cart: this.state.cart.filter(item => item.code !== code)
+    })
+  }
+
+  /**
+   * Добавление новой записи
+   */
+  addCartItem(code) {
+    this.setState({
+      ...this.state,
+      cart: [...this.state.cart, this.state.list.find(item => item.code === code)]
+    })
+  }
 }
+
 
 export default Store;

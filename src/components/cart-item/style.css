@@ -1,0 +1,7 @@
+.CartItem-price,.CartItem-quantity {
+    width: max-content;
+  }
+  
+  .CartItem-quantity {
+    margin-left: 62px;
+  }

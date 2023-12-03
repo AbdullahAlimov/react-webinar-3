@@ -4,7 +4,8 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import Modal from './components/ui/modal';
-
+import CartItem from './components/cart-item';
+import Item from './components/item';
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
@@ -13,42 +14,46 @@ import Modal from './components/ui/modal';
 function App({ store }) {
 
   const list = store.getState().list;
+  const cart = store.getState().cart
 
-  const [cart, setCart] = useState([]);
+  const uniqCart = store.getUniqCart()
 
   const callbacks = {
-    onDeleteItem: useCallback((code) => {
-      setCart(cart.filter(item => item.code !== code))
+    onDeleteItem: useCallback((code, e) => {
+      e.stopPropagation();
+      store.deleteCartItem(code);
     }, [cart]),
-    onAddItem: useCallback((code) => {
-      setCart(prevCart=>[...prevCart, store.getItem(code)]);
+    onAddItem: useCallback((code, e) => {
+      e.stopPropagation();
+      store.addCartItem(code);
     }, [cart])
   }
-  
-  const [modalValue, setModalValue] = useState(false);
 
-  useEffect(()=>{
-    if(!cart.length){
+  const [modalValue, setModalValue] = useState(false);
+  useEffect(() => {
+    if (!cart.length) {
       setModalValue(false)
     }
-  },[cart])
-  
+  }, [cart])
+
 
   return (
     <PageLayout>
       <Head title={'Магазин'} />
-      <Controls list={cart} setModalValue={setModalValue} />
+      <Controls list={cart} uniqList={uniqCart} setModalValue={setModalValue} />
       <List list={list}
-        type={"list"}
-        onClickToItemButton={callbacks.onAddItem} />
+        ItemComponent={Item}
+        onClick={callbacks.onAddItem} />
       <Modal title={"Корзина"}
         modalValue={modalValue}
         setModalValue={setModalValue}
       >
-        <List list={cart}
-          type={"cart"}
-          onClickToItemButton={callbacks.onDeleteItem} />
-        <p className="List-sum">Итого <span>{cart.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)} ₽</span></p>
+        <List
+          list={uniqCart}
+          ItemComponent={CartItem}
+          onClick={callbacks.onDeleteItem}
+          cart={cart} />
+        <p className="List-sum">Итого <span>{cart.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0).toLocaleString()} ₽</span></p>
       </Modal>
     </PageLayout>
   );

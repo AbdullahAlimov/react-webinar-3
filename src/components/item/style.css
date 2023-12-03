@@ -6,11 +6,6 @@
   width: 100%;
 }
 
-.Item_selected {
-  background: #75aaf1;
-  color: #fff;
-}
-
 .Item-code {
   padding: 20px 10px 20px 20px;
 }
@@ -26,4 +21,12 @@
   align-items: center;
   
   padding: 20px 20px 20px 10px;
+}
+
+.Item-price{
+  width: max-content;
+}
+
+.Item-button{
+  margin-left: 24px;
 }
