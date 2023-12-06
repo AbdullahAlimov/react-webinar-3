@@ -6,13 +6,25 @@ import BasketTool from "../../components/basket-tool";
 import List from "../../components/list";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
+import { getCatalog } from '../../api/api';
 
 function Main() {
 
   const store = useStore();
 
   useEffect(() => {
-    store.actions.catalog.load();
+    async function fetchData() {
+      try {
+        const response = await getCatalog();
+        store.actions.catalog.setState({
+          list: response
+        }, 'Загружены товары из АПИ');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
   }, []);
 
   const select = useSelector(state => ({
