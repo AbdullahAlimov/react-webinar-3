@@ -1,0 +1,17 @@
+.Product-content {
+    padding: 0 40px;
+}
+
+.Product-content p {
+    margin: 0 0 20px;
+}
+.Product-content span {
+    font-size: 18px;
+    font-weight: 700;
+}
+.Product-description {
+}
+.Product-price {
+    font-size: 24px;
+    font-weight: 700;
+}
