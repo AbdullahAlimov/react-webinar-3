@@ -8,7 +8,7 @@ import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
 import { getCatalog } from '../../api/api';
 
-function Main() {
+function Home() {
 
   const store = useStore();
 
@@ -57,4 +57,4 @@ function Main() {
   );
 }
 
-export default memo(Main);
+export default memo(Home);
