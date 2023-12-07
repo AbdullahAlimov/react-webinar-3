@@ -1,0 +1,17 @@
+.ChangeLocale button{
+    width: 40px;
+    height: 40px;
+
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+}
+
+.ChangeLocale button.active{
+    background-color: #0087E9;
+    color: #fff;
+}
+
+.ChangeLocale-ru{
+    margin-right: 5px;
+}

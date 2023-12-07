@@ -23,6 +23,8 @@ function PageLayout({head, footer, children}) {
 }
 
 PageLayout.propTypes = {
+  head: PropTypes.node,
+  footer: PropTypes.node,
   children: PropTypes.node
 }
 

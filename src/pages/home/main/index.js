@@ -6,6 +6,7 @@ import List from "../../../components/list";
 import Basket from "../../../components/basket";
 import useStore from "../../../store/use-store";
 import useSelector from "../../../store/use-selector";
+import LocalizedText from '../../../components/localized-text';
 
 function Main() {
 
@@ -37,7 +38,7 @@ function Main() {
 
     return (
         <>
-            <Head title='Магазин' />
+            <Head title={<LocalizedText id="shop"/>} />
             <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
                 sum={select.sum} />
             <List list={select.list} renderItem={renders.item} />
