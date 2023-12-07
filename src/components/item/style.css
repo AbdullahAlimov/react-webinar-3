@@ -5,11 +5,6 @@
   padding-left: 10px
 }
 
-.Item_selected {
-  background: #75aaf1;
-  color: #fff;
-}
-
 .Item-code {
   padding: 20px 10px 20px 20px;
 }
@@ -17,6 +12,9 @@
 .Item-title {
   width: 100%;
   padding: 20px 10px;
+  
+  color: black;
+  text-decoration: none;
 }
 
 .Item-actions {
@@ -31,4 +29,10 @@
   padding: 0 0 0 10px;
   white-space: nowrap;
   font-size: 18px;
+}
+
+@media(min-width:720px){
+  .Item-title:hover{
+    text-decoration: underline;
+  }
 }
