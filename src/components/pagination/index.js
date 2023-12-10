@@ -20,7 +20,7 @@ function Pagination ({list,selectItem,onRefresh}){
                 }
                 else {
                     return (
-                        <li key={index}>
+                        <li className='Pagination-ellipsis' key={index}>
                             {item}
                         </li>
                     )

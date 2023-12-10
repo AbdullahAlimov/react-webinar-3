@@ -1,12 +1,15 @@
 .Product-content {
-    padding: 0 40px;
+    padding: 20px 40px;
 }
 
 .Product-content p {
     margin: 0 0 20px;
+
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
 }
 .Product-content span {
-    font-size: 18px;
     font-weight: 700;
 }
 .Product-description {

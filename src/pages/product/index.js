@@ -53,7 +53,7 @@ function Product() {
                 <p className="Product-description">
                     {product.description}
                 </p>
-                <p><LocalizedText id="made_in"/>: <span>{product.madeIn?.title}</span></p>
+                <p><LocalizedText id="made_in"/>: <span>{`${product.madeIn?.title} (${product.madeIn?.code})`}</span></p>
                 <p><LocalizedText id="category"/>: <span>{product.category?.title}</span></p>
                 <p><LocalizedText id="edition"/>: <span>{product.edition}</span></p>
                 <p className="Product-price"><LocalizedText id="price"/>: {product.price} ₽</p>
