@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { messages } from '../../i18n/messages';
-import useSelector from '../../store/use-selector';
+import { messages } from '../../messages';
+import useSelector from '../../../store/use-selector';
 import "./style.css"
 
 function LocalizedText({ id,children,className, ...restProps }) {

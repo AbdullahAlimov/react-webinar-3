@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {cn as bem} from '@bem-react/classname';
 import {numberFormat} from "../../utils";
 import './style.css';
-import LocalizedText from "../localized-text";
+import LocalizedText from "../../i18n/components/localized-text";
 
 function BasketTotal({sum}) {
   const cn = bem('BasketTotal');

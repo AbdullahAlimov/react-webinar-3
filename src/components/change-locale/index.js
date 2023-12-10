@@ -1,27 +1,23 @@
-import React, { useCallback } from 'react';
+import React,{memo} from 'react';
 import "./style.css"
-import useSelector from '../../store/use-selector';
-import useStore from '../../store/use-store';
+import PropTypes from "prop-types";
+import { LOCALES } from '../../i18n/locales';
 
-function ChangeLocale(){
-    const store=useStore()
-    const locale=useSelector(state=>state.language.locale)
-
-    const callbacks={
-        onClick:useCallback((newLocale)=>{
-            if(newLocale!==locale){
-                store.actions.language.setState({
-                    locale:newLocale
-                },`Локализация сменена на ${newLocale}`)
-            }
-        },[locale])
-    }
+function ChangeLocale({onClick, locale}) {
     return (
         <div className='ChangeLocale'>
-            <button className={`ChangeLocale-ru ${locale==="ru-RU" && "active"}`} onClick={()=>callbacks.onClick("ru-RU")}>RU</button>
-            <button className={`ChangeLocale-en ${locale==="en-US" && "active"}`} onClick={()=>callbacks.onClick("en-US")}>EN</button>
+            <button className={`ChangeLocale-ru ${locale === LOCALES.RUSSIAN && "active"}`} onClick={() => onClick(LOCALES.RUSSIAN)}>RU</button>
+            <button className={`ChangeLocale-en ${locale === LOCALES.ENGLISH && "active"}`} onClick={() => onClick(LOCALES.ENGLISH)}>EN</button>
         </div>
     );
 };
 
-export default ChangeLocale;
+ChangeLocale.propTypes = {
+    locale: PropTypes.string,
+    onClick: PropTypes.func
+};
+ChangeLocale.defaultProps = {
+    onClick: () => { }
+}
+
+export default memo(ChangeLocale);

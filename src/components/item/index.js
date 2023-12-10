@@ -4,7 +4,7 @@ import { cn as bem } from '@bem-react/classname';
 import { numberFormat } from "../../utils";
 import './style.css';
 import { Link } from "react-router-dom";
-import LocalizedText from "../localized-text";
+import LocalizedText from "../../i18n/components/localized-text";
 
 function Item(props) {
 

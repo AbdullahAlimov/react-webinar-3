@@ -7,5 +7,10 @@ class Language extends StoreModule {
             locale:LOCALES.RUSSIAN,
         }
     }
+    changeLocale(newLocale){
+        this.setState({
+            locale:newLocale
+        },`Локализация сменена на ${newLocale}`)
+    }
 }
 export default Language;

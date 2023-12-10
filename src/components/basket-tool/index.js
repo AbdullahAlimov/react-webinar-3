@@ -4,12 +4,10 @@ import { cn as bem } from '@bem-react/classname';
 import { numberFormat, plural } from "../../utils";
 import './style.css';
 import { Link } from "react-router-dom";
-import LocalizedText from "../localized-text";
-import useSelector from "../../store/use-selector";
+import LocalizedText from "../../i18n/components/localized-text";
 import { messages } from "../../i18n/messages";
 
-function BasketTool({ sum, amount, onOpen }) {
-  const locale = useSelector(state => state.language.locale)
+function BasketTool({locale, sum, amount, onOpen }) {
   const cn = bem('BasketTool');
   return (
     <div className={cn()}>

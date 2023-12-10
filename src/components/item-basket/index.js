@@ -4,7 +4,7 @@ import {numberFormat} from "../../utils";
 import {cn as bem} from "@bem-react/classname";
 import {Link} from "react-router-dom"
 import './style.css';
-import LocalizedText from '../localized-text';
+import LocalizedText from '../../i18n/components/localized-text';
 
 function ItemBasket(props) {
 
