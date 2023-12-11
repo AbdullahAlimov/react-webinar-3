@@ -45,7 +45,7 @@ function ModalLayout(props) {
 }
 
 ModalLayout.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.node,
   onClose: PropTypes.func,
   children: PropTypes.node,
 };

@@ -2,21 +2,21 @@
     padding: 20px 40px;
 }
 
-.Product-content p {
+.Product-content p{
     margin: 0 0 20px;
 
     color: #000;
     font-size: 18px;
     font-weight: 400;
 }
-.Product-content span {
+.Product-content .Product-price{
+    font-size: 24px;
+    font-weight: 700;
+}
+.Product-bold {
     font-weight: 700;
 }
 .Product-description {
-}
-.Product-price {
-    font-size: 24px;
-    font-weight: 700;
 }
 
 .Product-button {

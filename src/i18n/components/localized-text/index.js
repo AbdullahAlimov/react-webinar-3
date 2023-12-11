@@ -7,9 +7,9 @@ import "./style.css"
 function LocalizedText({ id,children,className, ...restProps }) {
     const locale = useSelector(state => state.language.locale);
     return (
-        <div className={`LocalizedText ${className}`} {...restProps}>
+        <span className={`LocalizedText ${className}`} {...restProps}>
             {messages[locale][id]}{children}
-        </div>
+        </span>
     );
 }
 
