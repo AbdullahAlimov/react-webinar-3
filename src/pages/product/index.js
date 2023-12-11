@@ -35,7 +35,8 @@ function Product() {
         // Закрытие любой модалки
         closeModal: useCallback(() => store.actions.modals.close(), [store]),
         // Смена локализации
-        changeLocale: useCallback((newLocale) => newLocale !== select.locale && store.actions.language.changeLocale(newLocale), [select.locale])
+        changeLocale: useCallback((newLocale) => newLocale !== select.locale && store.actions.language.changeLocale(newLocale), [select.locale]),
+
     }
 
     const renders = {
@@ -57,7 +58,7 @@ function Product() {
         }
 
         fetchData();
-    }, [])
+    }, [id])
 
     return (
         <PageLayout>
@@ -70,9 +71,9 @@ function Product() {
                 <p className="Product-description">
                     {product.description}
                 </p>
-                <p><LocalizedText id="made_in" />: <span>{`${product.madeIn?.title} (${product.madeIn?.code})`}</span></p>
-                <p><LocalizedText id="category" />: <span>{product.category?.title}</span></p>
-                <p><LocalizedText id="edition" />: <span>{product.edition}</span></p>
+                <p><LocalizedText id="made_in" />: <span className="Product-bold">{`${product.madeIn?.title} (${product.madeIn?.code})`}</span></p>
+                <p><LocalizedText id="category" />: <span className="Product-bold">{product.category?.title}</span></p>
+                <p><LocalizedText id="edition" />: <span className="Product-bold">{product.edition}</span></p>
                 <p className="Product-price"><LocalizedText id="price" />: {product.price} ₽</p>
                 <button className="Product-Button" onClick={() => { callbacks.addToBasket(product._id) }}><LocalizedText id="add" /></button>
             </div>
