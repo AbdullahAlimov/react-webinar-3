@@ -7,7 +7,7 @@
 }
 
 .Pagination-item,.Pagination-ellipsis{
-    width: 18px;
+    min-width: 18px;
     height: 18px;
 
     padding: 1px;

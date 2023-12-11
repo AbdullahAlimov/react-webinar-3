@@ -1,34 +1,37 @@
-import React, { useCallback, useEffect, memo } from 'react';
+import React, { useCallback, useEffect, memo, useState } from 'react';
 import useStore from '../../../store/use-store';
-import useSelector from '../../../store/use-selector';
 import Pagination from '../../../components/pagination';
+import { getCatalogLength } from '../../../api/api';
 
 const HomePagination = () => {
     const store = useStore()
-    
-    const select = useSelector(state => ({
-        list: state.pagination.list,
-        selectItem: state.pagination.selectItem,
-    }));
-    useEffect(() => {
-        store.actions.pagination.load();
-    }, []);
+
+    const [selectItem,setSelectItem]=useState(1);
+    const [length,setLength]=useState(0)
 
     useEffect(() => {
-        store.actions.pagination.renderPagination();
-    }, [select.selectItem]);
+        async function fetchData(){
+            try {
+                const response = await getCatalogLength();
+                setLength(Math.ceil(response / 10))
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        fetchData()
+    }, []);
 
     const callbacks = {
         refreshCatalog: useCallback((paginationValue) => {
-            if(select.selectItem!==paginationValue){
-                store.actions.catalog.load(paginationValue*10)
-                store.actions.pagination.setSelectItem(paginationValue)
+            if (selectItem !== paginationValue) {
+                store.actions.catalog.load(paginationValue * 10)
+                setSelectItem(paginationValue)
             }
-        },[select.selectItem]),
+        }, [selectItem]),
     };
 
     return (
-        <Pagination list={select.list} selectItem={select.selectItem} onRefresh={callbacks.refreshCatalog}/>
+        <Pagination length={length} selectItem={selectItem} onRefresh={callbacks.refreshCatalog} />
     );
 };
 
