@@ -1,9 +1,10 @@
-import {useCallback, useContext, useEffect, useState} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import useSelector from "../hooks/use-selector";
 import Main from "./main";
+import Login from "./login"
 import Basket from "./basket";
 import Article from "./article";
+import Profile from './profile';
 
 /**
  * Приложение
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path={''} element={<Main/>}/>
         <Route path={'/articles/:id'} element={<Article/>}/>
+        <Route path={'/profile'} element={<Profile/>}/>
       </Routes>
 
       {activeModal === 'basket' && <Basket/>}
