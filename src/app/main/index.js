@@ -6,6 +6,7 @@ import Navigation from "../../containers/navigation";
 import PageLayout from "../../components/page-layout";
 import Head from "../../components/head";
 import CatalogFilter from "../../containers/catalog-filter";
+import Entrance from "../../containers/entrance";
 import CatalogList from "../../containers/catalog-list";
 import LocaleSelect from "../../containers/locale-select";
 
@@ -24,6 +25,7 @@ function Main() {
 
   return (
     <PageLayout>
+      <Entrance></Entrance>
       <Head title={t('title')}>
         <LocaleSelect/>
       </Head>
