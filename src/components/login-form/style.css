@@ -1,0 +1,23 @@
+.LoginForm{
+    max-width: 203px;
+    padding: 0px 20px 20px;
+}
+.LoginForm-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+.LoginForm-input {
+    margin-bottom:20px;
+}
+.LoginForm-input p{
+    margin-bottom:1px;
+}
+
+.LoginForm-input input{
+    width: 203px;
+
+    font-size: 17px;
+}
+
+.LoginForm-submit {
+}
