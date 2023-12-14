@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{memo} from 'react';
 import PropTypes from "prop-types";
 import "./style.css"
 
-const ProfileInfo = ({userName,userTel,userEmail}) => {
+function ProfileInfo({userName,userTel,userEmail}){
     return (
         <div className='ProfileInfo'>
             <p className='ProfileInfo-title'>Профиль</p>
@@ -21,4 +21,4 @@ ProfileInfo.propTypes = {
     userEmail:PropTypes.string,
 };
 
-export default ProfileInfo;
+export default memo(ProfileInfo);
