@@ -5,7 +5,7 @@ import Head from "../../components/head"
 import useTranslate from "../../hooks/use-translate";
 import LocaleSelect from "../../containers/locale-select";
 import Autorization from "../../containers/autorization";
-import { memo, useEffect } from 'react'
+import { memo, useMemo } from 'react'
 import useSelector from "../../hooks/use-selector";
 import { useNavigate } from "react-router-dom";
 
@@ -14,22 +14,22 @@ import { useNavigate } from "react-router-dom";
 function Profile() {
     const { t } = useTranslate();
 
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
-    const select= useSelector(state=>({
+    const select = useSelector(state => ({
         userTel: state.user.userInfo.phone,
         userName: state.user.userInfo.name,
         userEmail: state.user.userInfo.email,
-        isAuthorized:state.user.isAutorized,
+        isAuthorized: state.user.isAutorized,
     }))
 
-    useEffect(()=>{
-        if(!select.isAuthorized){
+    useMemo(() => {
+        if (!select.isAuthorized) {
             navigate("/login")
         }
-    },[select.isAuthorized])
+    }, [select.isAuthorized])
 
-    const labels={
+    const labels = {
         name: t("profile.name"),
         profile: t("profile.profile"),
         phone: t("profile.phone"),
@@ -39,15 +39,15 @@ function Profile() {
     return (
         <div>
             <PageLayout>
-                <Autorization/>
+                <Autorization />
                 <Head title={t('title')}>
                     <LocaleSelect />
                 </Head>
                 <Navigation />
-                <ProfileInfo userName={select.userName} 
-                userTel={select.userTel} 
-                userEmail={select.userEmail}
-                labels={labels} />
+                <ProfileInfo userName={select.userName}
+                    userTel={select.userTel}
+                    userEmail={select.userEmail}
+                    labels={labels} />
             </PageLayout>
         </div>
     );
