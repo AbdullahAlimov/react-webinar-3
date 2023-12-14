@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import "style.css"
 
-function EntranceBlock({isAuthorized, userName}){
+function AutorizationBlock({isAuthorized, onExit, userName}){
     return (
         <div className='EntranceBlock'>
             {isAuthorized?
             <>
             <Link to="/profile" className='EntranceBlock-link'>{userName}</Link>
-            <button>Выход</button>
+            <button onClick={onExit}>Выход</button>
             </>
             :
             <Link to="/login"><button>Вход</button></Link>}
@@ -17,10 +17,15 @@ function EntranceBlock({isAuthorized, userName}){
     );
 };
 
-EntranceBlock.propTypes = {
-    isAuthorized:PropTypes.bool.isRequired,
-    userName:PropTypes.string
-};
+AutorizationBlock.propTypes = {
+    isAuthorized:PropTypes.bool,
+    userName:PropTypes.string,
+    onExit:PropTypes.func
+}
+
+AutorizationBlock.defaultProps={
+    onExit:()=>{}
+}
 
 
-export default memo(EntranceBlock);
+export default memo(AutorizationBlock);

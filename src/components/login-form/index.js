@@ -1,19 +1,22 @@
 import {memo} from 'react'
 import "./style.css"
 
-function LoginForm(){
+function LoginForm({errorMessage,login,password,onSubmit,onChange}){
     return(
         <form className="LoginForm">
             <p className="LoginForm-title">Вход</p>
             <div className="LoginForm-input">
                 <p>Логин</p>
-                <input></input>
+                <input onChange={e=>onChange({login:e.target.value,password:password})}></input>
             </div>
             <div className="LoginForm-input">
                 <p>Пароль</p>
-                <input type='password'></input>
+                <input type='password' onChange={e=>onChange({login:login,password:e.target.value})}></input>
             </div>
-            <button className="LoginForm-submit">Войти</button>
+            <div className='LoginForm-error'>
+                {errorMessage}
+            </div>
+            <button className="LoginForm-submit" type='button' onClick={()=>{onSubmit(login,password)}}>Войти</button>
         </form>
     )
 }

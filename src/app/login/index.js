@@ -4,37 +4,44 @@ import LoginForm from "../../components/login-form";
 import Head from "../../components/head"
 import useTranslate from "../../hooks/use-translate";
 import LocaleSelect from "../../containers/locale-select";
-import Entrance from "../../containers/entrance";
-import { memo } from 'react'
+import Autorization from "../../containers/autorization";
+import { memo, useCallback, useState } from 'react'
+import useStore from "../../hooks/use-store";
 
 function Login() {
+    const store = useStore();
+
     const { t } = useTranslate();
-    const [user,setUser]=useState();
 
-    useEffect(() => {
-        const url = '/api/v1/users/sign';
-        const data = {
-            login: 'test_1',
-            password: '12356'
-        };
+    const [errorMessage,setErrorMessage]=useState("");
+    const [loginValue,setLoginValue]=useState("");
+    const [passwordValue,setPasswordValue]=useState("");
 
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(data => {
-                setUser(data);
+    const callbacks={
+        submitState:useCallback(()=>{
+            store.actions.user.autorization(loginValue, passwordValue)
+            .then((message) => {
+                setErrorMessage(message);
             })
-    }, [])
+        },[loginValue,passwordValue]),
+        changeInput:useCallback((data)=>{
+            setLoginValue(data.login)
+            setPasswordValue(data.password)
+        },[loginValue,passwordValue])
+    }
     return (
         <PageLayout>
-            <Entrance></Entrance>
+            <Autorization/>
             <Head title={t('title')}>
                 <LocaleSelect />
             </Head>
             <Navigation />
-            <LoginForm />
+            <LoginForm 
+            errorMessage={errorMessage} 
+            login={loginValue}
+            password={passwordValue}
+            onSubmit={callbacks.submitState}
+            onChange={callbacks.changeInput}/>
         </PageLayout>
     )
 }

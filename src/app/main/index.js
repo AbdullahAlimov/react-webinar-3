@@ -6,7 +6,7 @@ import Navigation from "../../containers/navigation";
 import PageLayout from "../../components/page-layout";
 import Head from "../../components/head";
 import CatalogFilter from "../../containers/catalog-filter";
-import Entrance from "../../containers/entrance";
+import Autorization from "../../containers/autorization";
 import CatalogList from "../../containers/catalog-list";
 import LocaleSelect from "../../containers/locale-select";
 
@@ -19,13 +19,14 @@ function Main() {
 
   useInit(() => {
     store.actions.catalog.initParams();
+    store.actions.user.load();
   }, [], true);
 
   const {t} = useTranslate();
 
   return (
     <PageLayout>
-      <Entrance></Entrance>
+      <Autorization/>
       <Head title={t('title')}>
         <LocaleSelect/>
       </Head>

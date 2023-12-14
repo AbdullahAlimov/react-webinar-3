@@ -19,5 +19,13 @@
     font-size: 17px;
 }
 
+.LoginForm-error{
+    margin-bottom: 20px;
+
+    color: #F00;
+font-size: 16px;
+font-weight: 400;
+}
+
 .LoginForm-submit {
 }
