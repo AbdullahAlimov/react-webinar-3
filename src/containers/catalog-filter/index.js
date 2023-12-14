@@ -45,7 +45,6 @@ function CatalogFilter() {
     fetchData();
   }, []);
 
-
   const select = useSelector(state => ({
     sort: state.catalog.params.sort,
     category: state.catalog.params.category,
