@@ -29,6 +29,13 @@ function Profile() {
         }
     },[select.isAuthorized])
 
+    const labels={
+        name: t("profile.name"),
+        profile: t("profile.profile"),
+        phone: t("profile.phone"),
+        email: t("profile.email"),
+    }
+
     return (
         <div>
             <PageLayout>
@@ -37,7 +44,10 @@ function Profile() {
                     <LocaleSelect />
                 </Head>
                 <Navigation />
-                <ProfileInfo userName={select.userName} userTel={select.userTel} userEmail={select.userEmail} />
+                <ProfileInfo userName={select.userName} 
+                userTel={select.userTel} 
+                userEmail={select.userEmail}
+                labels={labels} />
             </PageLayout>
         </div>
     );

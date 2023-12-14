@@ -1,4 +1,4 @@
-import { Children, memo, useCallback, useEffect, useMemo, useState } from "react";
+import {memo, useCallback, useEffect, useMemo, useState } from "react";
 import useTranslate from "../../hooks/use-translate";
 import useStore from "../../hooks/use-store";
 import useSelector from "../../hooks/use-selector";
@@ -12,6 +12,8 @@ import SideLayout from "../../components/side-layout";
 function CatalogFilter() {
 
   const store = useStore();
+
+  const { t } = useTranslate();
 
   const [category, setCategory] = useState([{ value: "", title: "Все" }])
 
@@ -64,15 +66,15 @@ function CatalogFilter() {
 
   const options = {
     sort: useMemo(() => ([
-      { value: 'order', title: 'По порядку' },
-      { value: 'title.ru', title: 'По именованию' },
-      { value: '-price', title: 'Сначала дорогие' },
-      { value: 'edition', title: 'Древние' },
-    ]), []),
-    category: category
+      { value: 'order', title: t('filter.inOrder') },
+      { value: 'title.ru', title: t('filter.byNaming') },
+      { value: '-price', title: t('filter.firstExpensive') },
+      { value: 'edition', title: t('filter.ancient') },
+    ]), [t]),
+    category: useMemo(() => ([
+      ...category
+    ]),[t,category])
   };
-
-  const { t } = useTranslate();
 
   return (
     <SideLayout padding='medium'>

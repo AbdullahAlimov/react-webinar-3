@@ -29,6 +29,13 @@ function Login() {
             setPasswordValue(data.password)
         },[loginValue,passwordValue])
     }
+    
+    const labels={
+        enter: t("enter"),
+        login: t("login.login"),
+        password: t("login.password"),
+        buttonEnter: t("login.enter"),
+    }
     return (
         <PageLayout>
             <Autorization/>
@@ -41,7 +48,8 @@ function Login() {
             login={loginValue}
             password={passwordValue}
             onSubmit={callbacks.submitState}
-            onChange={callbacks.changeInput}/>
+            onChange={callbacks.changeInput}
+            labels={labels}/>
         </PageLayout>
     )
 }
