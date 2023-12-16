@@ -5,13 +5,25 @@ import Head from "../../components/head"
 import useTranslate from "../../hooks/use-translate";
 import LocaleSelect from "../../containers/locale-select";
 import Autorization from "../../containers/autorization";
-import { memo, useCallback, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import useStore from "../../hooks/use-store";
+import { useNavigate } from "react-router-dom";
+import useSelector from "../../hooks/use-selector";
 
 function Login() {
     const store = useStore();
 
     const { t } = useTranslate();
+
+    const navigate= useNavigate();
+
+    const isAutorized=useSelector(state=>state.autorization.isAutorized);
+
+    useEffect(()=>{
+        if(isAutorized){
+            navigate(-1)
+        }
+    },[isAutorized])
 
     const [errorMessage,setErrorMessage]=useState("");
     const [loginValue,setLoginValue]=useState("");
@@ -25,10 +37,11 @@ function Login() {
             })
             await store.actions.autorization.load();
         },[loginValue,passwordValue]),
+
         changeInput:useCallback((data)=>{
             setLoginValue(data.login)
             setPasswordValue(data.password)
-        },[loginValue,passwordValue])
+        },[loginValue,passwordValue]),
     }
     
     const labels={
@@ -50,6 +63,7 @@ function Login() {
             password={passwordValue}
             onSubmit={callbacks.submitState}
             onChange={callbacks.changeInput}
+            onRedirect={callbacks.navigateToPreviousPath}
             labels={labels}/>
         </PageLayout>
     )
