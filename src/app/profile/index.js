@@ -5,7 +5,7 @@ import Head from "../../components/head"
 import useTranslate from "../../hooks/use-translate";
 import LocaleSelect from "../../containers/locale-select";
 import Autorization from "../../containers/autorization";
-import { memo, useMemo } from 'react'
+import { memo, useEffect} from 'react'
 import useSelector from "../../hooks/use-selector";
 import { useNavigate } from "react-router-dom";
 
@@ -20,14 +20,14 @@ function Profile() {
         userTel: state.user.phone,
         userName: state.user.name,
         userEmail: state.user.email,
-        isAuthorized: state.autorization.isAutorized,
+        isAutorized: state.autorization.isAutorized,
     }))
 
-    useMemo(() => {
-        if (!select.isAuthorized) {
+    useEffect(() => {
+        if (!select.isAutorized) {
             navigate("/login")
         }
-    }, [select.isAuthorized])
+    }, [select.isAutorized])
 
     const labels = {
         name: t("profile.name"),
