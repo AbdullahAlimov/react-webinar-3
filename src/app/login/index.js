@@ -18,11 +18,12 @@ function Login() {
     const [passwordValue,setPasswordValue]=useState("");
 
     const callbacks={
-        submitState:useCallback(()=>{
-            store.actions.user.autorization(loginValue, passwordValue)
+        submitState:useCallback(async()=>{
+            await store.actions.user.autorization(loginValue, passwordValue)
             .then((message) => {
                 setErrorMessage(message);
             })
+            await store.actions.autorization.load();
         },[loginValue,passwordValue]),
         changeInput:useCallback((data)=>{
             setLoginValue(data.login)

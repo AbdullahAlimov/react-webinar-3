@@ -3,12 +3,9 @@ import StoreModule from "../module";
 class UserState extends StoreModule {
     initState() {
         return {
-            isAutorized: false,
-            userInfo: {
-                name: "",
-                email: "",
-                phone: "",
-            }
+            name: "",
+            email: "",
+            phone: "",
         }
     }
     async autorization(login, password) {
@@ -34,12 +31,9 @@ class UserState extends StoreModule {
                 localStorage.setItem("token", json.result.token)
 
                 await this.setState({
-                    isAutorized: true,
-                    userInfo: {
-                        name: json.result.user.username,
-                        email: json.result.user.email,
-                        phone: json.result.user.profile.phone,
-                    }
+                    name: json.result.user.username,
+                    email: json.result.user.email,
+                    phone: json.result.user.profile.phone,
                 }, "Пользователь успешно вошел")
                 resolve("")
             }
@@ -81,12 +75,9 @@ class UserState extends StoreModule {
                 const json = await response.json();
 
                 await this.setState({
-                    isAutorized: true,
-                    userInfo: {
-                        name: json.result.username,
-                        email: json.result.email,
-                        phone: json.result.profile.phone,
-                    }
+                    name: json.result.username,
+                    email: json.result.email,
+                    phone: json.result.profile.phone,
                 }, "Пользователь успешно вошел")
             }
             fetchData();

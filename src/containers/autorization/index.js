@@ -14,16 +14,18 @@ function Autorization() {
     useInit(() => {
         store.actions.catalog.initParams();
         store.actions.user.load();
+        store.actions.autorization.load();
     }, [], true);
 
     const select = useSelector(state => ({
-        isAuthorized: state.user.isAutorized,
-        userName: state.user.userInfo.name
+        isAuthorized: state.autorization.isAutorized,
+        userName: state.user.name
     }))
 
     const callbacks = {
         exitOfAccount: useCallback(() => {
             store.actions.user.exit()
+            store.actions.autorization.load();
         }, [])
     }
 

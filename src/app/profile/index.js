@@ -17,10 +17,10 @@ function Profile() {
     const navigate = useNavigate();
 
     const select = useSelector(state => ({
-        userTel: state.user.userInfo.phone,
-        userName: state.user.userInfo.name,
-        userEmail: state.user.userInfo.email,
-        isAuthorized: state.user.isAutorized,
+        userTel: state.user.phone,
+        userName: state.user.name,
+        userEmail: state.user.email,
+        isAuthorized: state.autorization.isAutorized,
     }))
 
     useMemo(() => {
