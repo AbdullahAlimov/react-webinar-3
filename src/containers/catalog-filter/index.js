@@ -1,11 +1,11 @@
-import {memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import useTranslate from "../../hooks/use-translate";
 import useStore from "../../hooks/use-store";
 import useSelector from "../../hooks/use-selector";
 import Select from "../../components/select";
 import Input from "../../components/input";
 import SideLayout from "../../components/side-layout";
-
+import { addHierarchyDash } from "../../utils";
 /**
  * Контейнер со всеми фильтрами каталога
  */
@@ -15,42 +15,11 @@ function CatalogFilter() {
 
   const { t } = useTranslate();
 
-  const [category, setCategory] = useState([{ value: "", title: "Все" }])
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/v1/categories?fields=_id,title,parent(_id)&limit=*");
-      const json = await response.json();
-
-      const updatedCategories=[];
-      const processedItems=[];
-      function recursionPush(list,depth){
-        list.map((item) => {
-          if(!processedItems.includes(item._id)){
-            const children=json.result.items.filter(children=>item._id===children.parent?._id)
-            if(children){
-              processedItems.push(item._id);
-              updatedCategories.push({value:item._id, title:"- ".repeat(depth)+item.title})
-              recursionPush(children,depth + 1)
-            }
-          }
-      });
-      }
-      recursionPush(json.result.items,0)
-
-      setCategory(prevState => [
-        ...prevState,
-        ...updatedCategories
-      ]);
-    }
-
-    fetchData();
-  }, []);
-
   const select = useSelector(state => ({
     sort: state.catalog.params.sort,
     category: state.catalog.params.category,
     query: state.catalog.params.query,
+    categoryList: state.categories.list,
   }));
 
   const callbacks = {
@@ -72,8 +41,8 @@ function CatalogFilter() {
       { value: 'edition', title: t('filter.ancient') },
     ]), [t]),
     category: useMemo(() => ([
-      ...category
-    ]),[t,category])
+      ...addHierarchyDash(select.categoryList)
+    ]), [t, select.categoryList])
   };
 
   return (
