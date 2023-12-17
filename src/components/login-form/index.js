@@ -18,7 +18,10 @@ function LoginForm({errorMessage,login,password,onSubmit,onChange,labels}){
             <div className='LoginForm-error'>
                 {errorMessage}
             </div>
-            <button className="LoginForm-submit" type='button' onClick={()=>{onSubmit(login,password)}}>{labels.buttonEnter}</button>
+            <button className="LoginForm-submit" type='button' 
+            onClick={()=>{
+                onSubmit(login,password);}}>{labels.buttonEnter}
+            </button>
         </form>
     )
 }

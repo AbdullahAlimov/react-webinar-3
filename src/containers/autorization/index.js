@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import SideLayout from '../../components/side-layout';
 import AutorizationBlock from '../../components/autorization-block';
 import useSelector from '../../hooks/use-selector';
@@ -45,4 +45,4 @@ function Autorization() {
     );
 };
 
-export default Autorization;
+export default memo(Autorization);
