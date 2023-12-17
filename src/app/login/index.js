@@ -21,7 +21,12 @@ function Login() {
 
     useEffect(()=>{
         if(isAutorized){
-            navigate(-1)
+            if(history.length>1){
+                navigate(-1)
+            }
+            else{
+                navigate("/profile")
+            }
         }
     },[isAutorized])
 
