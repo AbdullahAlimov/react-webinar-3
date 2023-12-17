@@ -1,3 +1,4 @@
+
 /**
  * Плюрализация
  * Возвращает вариант с учётом правил множественного числа под указанную локаль
@@ -36,14 +37,25 @@ export function numberFormat(value, locale = 'ru-RU', options = {}) {
 }
 
 /**
+ * Добавление дефисов для указания уровня вложенности в иерархии
+ * @param {String} title - название категории.
+ * @param {Number} depth - глубина вложенности
+ * @returns {String} - item с дефисами для указания уровня вложенности.
+ */
+function addHierarchyDash(title,depth) {
+  return ("- ".repeat(depth) + title)
+}
+
+/**
  * Преобразование категорий в структурированный формат с указанием глубины вложенности
  * @param {Array} categories - Массив категорий.
  * @param {Number} depth - Глубина вложенности (по умолчанию 0).
  * @returns {Array} - Структурированный массив категорий с указанием глубины вложенности.
  */
 export function processCategories(categories, depth = 0) {
-  const updatedCategories = [];
-  const processedItems = [];
+
+  const updatedCategories = []; // Массив для хранения обрабртанных категорий
+  const processedItems = []; // Массив для хранения уже отработанных id, с помощью него значительно уменьшается кол-во вызовов рекурсивной функции.
 
   /**
    * Рекурсивная функция для обхода и структурирования категорий
@@ -53,15 +65,12 @@ export function processCategories(categories, depth = 0) {
   function recursionPush(list, depth) {
     list.map((item) => {
       if (!processedItems.includes(item._id)) {
-        // Получаем дочерние категории
-        const children = categories.filter((children) => item._id === children.parent?._id);
+        const children = categories.filter((children) => item._id === children.parent?._id);// Получаем дочерние категории
 
         if (children.length || depth !== 0) {
           processedItems.push(item._id);
-          // Добавляем структурированную категорию в массив
-          updatedCategories.push({ value: item._id, title: item.title, depth: depth });
-          // Рекурсивно вызываем функцию для дочерних категорий
-          recursionPush(children, depth + 1);
+          updatedCategories.push({ value: item._id, title: addHierarchyDash(item.title,depth) });// Добавляем структурированную категорию в массив
+          recursionPush(children, depth + 1); // Рекурсивно вызываем функцию для дочерних категорий
         }
       }
     });
@@ -70,20 +79,4 @@ export function processCategories(categories, depth = 0) {
   recursionPush(categories, depth);
 
   return updatedCategories;
-}
-
-/**
- * Добавление дефисов для указания уровня вложенности в иерархии
- * @param {Array} list - Массив категорий.
- * @returns {Array} - Массив категорий с дефисами для указания уровня вложенности.
- */
-export function addHierarchyDash(list) {
-  const newList = [];
-  list.map((item) => {
-    newList.push({
-      ...item,
-      title: "- ".repeat(item.depth) + item.title,
-    });
-  });
-  return newList;
 }

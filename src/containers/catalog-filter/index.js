@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useCallback, useMemo } from "react";
 import useTranslate from "../../hooks/use-translate";
 import useStore from "../../hooks/use-store";
 import useSelector from "../../hooks/use-selector";
@@ -41,7 +41,7 @@ function CatalogFilter() {
       { value: 'edition', title: t('filter.ancient') },
     ]), [t]),
     category: useMemo(() => ([
-      ...addHierarchyDash(select.categoryList)
+      ...select.categoryList
     ]), [t, select.categoryList])
   };
 

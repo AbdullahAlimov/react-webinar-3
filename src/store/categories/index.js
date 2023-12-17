@@ -5,7 +5,7 @@ class CategoriesState extends StoreModule {
 
     initState() {
         return {
-            list: [{ value: "", title: "Все", depth: 0 }]
+            list: [{ value: "", title: "Все" }]
         };
     }
     load(){
@@ -15,7 +15,7 @@ class CategoriesState extends StoreModule {
 
             this.setState({
                 list:[
-                    ...this.getState().list,
+                    ...this.initState().list,
                     ...processCategories(json.result.items)
                 ]
             })
