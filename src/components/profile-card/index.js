@@ -14,7 +14,7 @@ function ProfileCard({data}) {
         <div className={cn('value')}>{data?.profile?.name}</div>
       </div>
       <div className={cn('prop')}>
-        <div className={cn('label')}>Телефон:</div>
+        <div className={cn('label')}>Телdефон:</div>
         <div className={cn('value')}>{data?.profile?.phone}</div>
       </div>
       <div className={cn('prop')}>
