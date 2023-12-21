@@ -3,27 +3,31 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr auto;
     gap: 10px;
+
+    margin-bottom: 30px;
 }
 .Comment p{
     margin: 0;
 }
 .Comment-name {
-font-family: Arial;
-font-size: 12px;
-font-weight: 700;
+    font-size: 12px;
+    font-family: Arial;
+    font-weight: 700;
 }
 .Comment-date {
     color: #666;
 
-font-size: 12px;
-font-weight: 400;
+    font-size: 12px;
+    font-weight: 400;
 }
-.Comment-content {
+.Comment-text {
     grid-column: 1/3;
     grid-row: 2/3;
 
-font-size: 14px;
-font-weight: 400;
+    font-size: 14px;
+    font-weight: 400;
+
+    word-wrap: break-word;
 }
 .Comment-button {
     grid-column: 1/3;
@@ -38,6 +42,6 @@ font-weight: 400;
 
     color: #0087E9;
 
-font-size: 12px;
-font-weight: 400;
+    font-size: 12px;
+    font-weight: 400;
 }
