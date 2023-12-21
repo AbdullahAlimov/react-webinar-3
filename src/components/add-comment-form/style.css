@@ -1,0 +1,31 @@
+.AddCommentForm {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 76px auto;
+    gap: 10px;
+
+    margin: 0 40px;
+}
+.AddCommentForm-title {
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+.AddCommentForm-input {
+    resize: none;
+
+    padding: 5px;
+    
+    font-size: 14px;
+    font-weight: 400;
+}
+.AddCommentForm-button {
+    width: min-content;
+}
+.AddCommentForm-link{
+    color: #0087E9;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration-line: underline;
+}

@@ -1,0 +1,42 @@
+.AddAnswerForm {
+    margin-bottom: 20px;
+}
+.AddAnswerForm-content{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 76px auto;
+    gap: 10px;
+
+}
+.AddAnswerForm-title {
+    grid-column: 1/3;
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+.AddAnswerForm-input {
+    grid-column: 1/3;
+
+    resize: none;
+
+    padding: 5px;
+    
+    font-size: 14px;
+    font-weight: 400;
+}
+.AddCommentForm-button {
+    width: min-content;
+}
+.AddAnswerForm-link {
+    color: #0087E9;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration-line: underline;
+}
+.AddAnswerForm-cancel {
+    color: #666;
+font-size: 16px;
+font-weight: 400;
+text-decoration-line: underline;
+}
