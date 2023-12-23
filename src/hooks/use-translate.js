@@ -1,9 +1,19 @@
-import {useCallback, useContext} from 'react';
-import {I18nContext} from '../i18n/context';
+import {useSyncExternalStore} from 'react';
+import useServices from './use-services';
 
 /**
  * Хук возвращает функцию для локализации текстов, код языка и функцию его смены
  */
 export default function useTranslate() {
-  return useContext(I18nContext);
+  const { i18n } = useServices();
+
+  const state = useSyncExternalStore(i18n.subscribe, i18n.getSnapshot);
+
+  const returnValue = {
+    lang: state.lang,
+    setLang: i18n.setLang,
+    t: i18n.translate,
+  };
+
+  return returnValue;
 }

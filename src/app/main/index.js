@@ -14,14 +14,15 @@ function Main() {
 
   const store = useStore();
 
+  const {t,lang} = useTranslate();
+
   useInit(async () => {
     await Promise.all([
       store.actions.catalog.initParams(),
       store.actions.categories.load()
     ]);
-  }, [], true);
+  }, [lang], true);
 
-  const {t} = useTranslate();
 
   return (
     <PageLayout>

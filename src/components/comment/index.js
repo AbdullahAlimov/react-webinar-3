@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import "./style.css"
 
-function Comment({ name, date, content, id, onChangeParent }) {
+function Comment({ name, lang, date, content, id, onChangeParent }) {
     const dateOptions = {
         year: 'numeric',
         month: 'long',
@@ -11,18 +11,18 @@ function Comment({ name, date, content, id, onChangeParent }) {
         minute: 'numeric',
     };
 
-    const formattedDate = new Date(date).toLocaleDateString('ru-RU', dateOptions);
+    const formattedDate = new Date(date).toLocaleDateString(lang, dateOptions);
     const year = new Date(date).getFullYear();
 
     const finalFormattedDate = formattedDate.replace(` ${year} г.`, ` ${year}`);
 
     return (
-            <div className='Comment'>
-                <p className='Comment-name'>{name}</p>
-                <p className='Comment-date'>{finalFormattedDate}</p>
-                <p className='Comment-text'>{content}</p>
-                <button className='Comment-button' onClick={()=>onChangeParent(id) }>Ответить</button>
-            </div>
+        <div className='Comment'>
+            <p className='Comment-name'>{name}</p>
+            <p className='Comment-date'>{finalFormattedDate}</p>
+            <p className='Comment-text'>{content}</p>
+            <button className='Comment-button' onClick={() => onChangeParent(id)}>Ответить</button>
+        </div>
     );
 };
 
@@ -34,8 +34,8 @@ Comment.propTypes = {
     onChangeParent: PropTypes.func
 }
 
-Comment.defaultProps={
-    onChangeParent:()=>{}
+Comment.defaultProps = {
+    onChangeParent: () => { }
 }
 
 

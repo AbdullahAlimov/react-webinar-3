@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import "./style.css"
 
 
-function CommentList({ list, exists,parent, onChangeParent, onResetParent, onSignIn, onAdd }) {
+function CommentList({ list, exists,lang,parent, onChangeParent, onResetParent, onSignIn, onAdd }) {
 
     return (
         <div className='CommentList'>
@@ -17,6 +17,7 @@ function CommentList({ list, exists,parent, onChangeParent, onResetParent, onSig
                             style={{ marginLeft: item.depth * 30 }}>
                             <Comment
                                 id={item.id}
+                                lang={item.lang}
                                 name={item.author.profile.name}
                                 content={item.content}
                                 onChangeParent={onChangeParent}

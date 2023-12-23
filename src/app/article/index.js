@@ -24,17 +24,19 @@ function Article() {
 
   const params = useParams();
 
+  const {t,lang} = useTranslate();
+
+  console.log(lang)
+
   useInit(() => {
       dispatch(articleActions.load(params.id)),
       dispatch(commentsActions.load(params.id))
-  },[params.id]);
+  },[params.id,lang]);
 
   const select = useSelector(state => ({
     article: state.article.data,
     waiting: state.article.waiting,
   }), shallowequal); // Нужно указать функцию для сравнения свойства объекта, так как хуком вернули объект
-
-  const {t} = useTranslate();
 
   const callbacks = {
     // Добавление в корзину
@@ -51,7 +53,7 @@ function Article() {
       <Spinner active={select.waiting}>
         <ArticleCard article={select.article} onAdd={callbacks.addToBasket} t={t}/>
       </Spinner>
-      <Comments articleId={params.id}/>
+      <Comments articleId={params.id} lang={lang}/>
     </PageLayout>
   );
 }

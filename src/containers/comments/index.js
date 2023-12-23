@@ -9,12 +9,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import commentActions from "../../store-redux/comments/actions"
 import Spinner from '../../components/spinner';
 import PropTypes from 'prop-types';
+import useTranslate from '../../hooks/use-translate';
 
 const Comments = ({articleId}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const {lang}=useTranslate();
 
     const select = useReduxSelector(state => ({
         comments: state.comments.items,
@@ -70,6 +72,7 @@ return (
         <CommentList
             list={lists.comment}
             exists={exists}
+            lang={lang}
             parent={selectParent}
             onChangeParent={callbacks.changeSelectParent}
             onAdd={callbacks.addComment}
