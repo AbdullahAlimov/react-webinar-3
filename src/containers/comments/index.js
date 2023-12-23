@@ -16,7 +16,7 @@ const Comments = ({articleId}) => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-    const {lang}=useTranslate();
+    const {t,lang}=useTranslate();
 
     const select = useReduxSelector(state => ({
         comments: state.comments.items,
@@ -73,13 +73,14 @@ return (
             list={lists.comment}
             exists={exists}
             lang={lang}
+            t={t}
             parent={selectParent}
             onChangeParent={callbacks.changeSelectParent}
             onAdd={callbacks.addComment}
             onResetParent={callbacks.resetParent}
             onSignIn={callbacks.onSignIn}>
         </CommentList>
-        {selectParent._id===articleId && <AddCommentForm exists={exists} onSignIn={callbacks.onSignIn} onAdd={callbacks.addComment}></AddCommentForm>}
+        {selectParent._id===articleId && <AddCommentForm exists={exists} onSignIn={callbacks.onSignIn} onAdd={callbacks.addComment} t={t}></AddCommentForm>}
     </Spinner>
 );
 };

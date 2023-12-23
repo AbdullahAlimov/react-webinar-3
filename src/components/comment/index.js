@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import "./style.css"
 
-function Comment({ name, lang, date, content, id, onChangeParent }) {
+function Comment({ name, lang,t, date, content, id, onChangeParent }) {
     const dateOptions = {
         year: 'numeric',
         month: 'long',
@@ -21,7 +21,7 @@ function Comment({ name, lang, date, content, id, onChangeParent }) {
             <p className='Comment-name'>{name}</p>
             <p className='Comment-date'>{finalFormattedDate}</p>
             <p className='Comment-text'>{content}</p>
-            <button className='Comment-button' onClick={() => onChangeParent(id)}>Ответить</button>
+            <button className='Comment-button' onClick={() => onChangeParent(id)}>{t("comment.answer")}</button>
         </div>
     );
 };

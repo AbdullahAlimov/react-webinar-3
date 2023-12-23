@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import "./style.css"
 
 
-function CommentList({ list, exists,lang,parent, onChangeParent, onResetParent, onSignIn, onAdd }) {
+function CommentList({ list, exists,lang,t,parent, onChangeParent, onResetParent, onSignIn, onAdd }) {
 
     return (
         <div className='CommentList'>
-            <p className='CommentList-length'>{`Комментарии (${list.length})`}</p>
+            <p className='CommentList-length'>{t("commentList.comments")+` (${list.length})`}</p>
             <div className='CommentList-content'>
                 {list.map((item) => {
                     return (
@@ -17,7 +17,8 @@ function CommentList({ list, exists,lang,parent, onChangeParent, onResetParent, 
                             style={{ marginLeft: item.depth * 30 }}>
                             <Comment
                                 id={item.id}
-                                lang={item.lang}
+                                lang={lang}
+                                t={t}
                                 name={item.author.profile.name}
                                 content={item.content}
                                 onChangeParent={onChangeParent}
@@ -29,6 +30,7 @@ function CommentList({ list, exists,lang,parent, onChangeParent, onResetParent, 
                                     onSignIn={onSignIn}
                                     onCancel={onResetParent}
                                     onAdd={onAdd}
+                                    t={t}
                                 ></AddAnswerForm>}
                         </div>
                     )

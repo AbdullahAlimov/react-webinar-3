@@ -26,8 +26,6 @@ function Article() {
 
   const {t,lang} = useTranslate();
 
-  console.log(lang)
-
   useInit(() => {
       dispatch(articleActions.load(params.id)),
       dispatch(commentsActions.load(params.id))
@@ -53,7 +51,7 @@ function Article() {
       <Spinner active={select.waiting}>
         <ArticleCard article={select.article} onAdd={callbacks.addToBasket} t={t}/>
       </Spinner>
-      <Comments articleId={params.id} lang={lang}/>
+      <Comments articleId={params.id}/>
     </PageLayout>
   );
 }

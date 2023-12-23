@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {cn as bem} from '@bem-react/classname';
 import './style.css';
 
-function ProfileCard({data}) {
+function ProfileCard({data,t}) {
   const cn = bem('ProfileCard');
 
   return (

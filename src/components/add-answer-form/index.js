@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import "./style.css"
 
-const AddAnswerForm = ({ exists,onSignIn,onCancel,onAdd }) => {
+const AddAnswerForm = ({ exists,onSignIn,onCancel,onAdd,t }) => {
 
     const [value,setValue]=useState("")
 
@@ -10,16 +10,16 @@ const AddAnswerForm = ({ exists,onSignIn,onCancel,onAdd }) => {
         <div className='AddAnswerForm'>{
             exists ?
                 <div className='AddAnswerForm-content'>
-                    <p className='AddAnswerForm-title'>Новый ответ</p>
-                    <textarea className='AddAnswerForm-input' placeholder="Введите ответ" value={value} onChange={(e)=>{setValue(e.target.value)}}></textarea>
-                    <button className='AddCommentForm-button' onClick={()=>onAdd(value)}>Отправить</button>
-                    <button className='AddCommentForm-button' onClick={()=>onCancel()}>Отмена</button>
+                    <p className='AddAnswerForm-title'>{t("answerForm.title")}</p>
+                    <textarea className='AddAnswerForm-input' placeholder={t("answerForm.placeholder")} value={value} onChange={(e)=>{setValue(e.target.value)}}></textarea>
+                    <button className='AddCommentForm-button' onClick={()=>onAdd(value)}>{t("commentsForm.send")}</button>
+                    <button className='AddCommentForm-button' onClick={()=>onCancel()}>{t("answerForm.cancel")}</button>
                 </div>
                 :
                 <p>
-                    <a className='AddAnswerForm-link' onClick={()=>onSignIn()}>Войдите</a>
-                    ,чтобы иметь возможность ответить. 
-                    <a className='AddAnswerForm-cancel' onClick={()=>onCancel()}>Отмена</a>
+                    <a className='AddAnswerForm-link' onClick={()=>onSignIn()}>{t("commentsForm.logIn")}</a>
+                    , {t("answerForm.warning")}
+                    <a className='AddAnswerForm-cancel' onClick={()=>onCancel()}>{t("answerForm.cancel")}</a>
                 </p>
         }
         </div>
