@@ -34,7 +34,7 @@ const AddAnswerForm = ({ exists,onSignIn,onCancel,onAdd,t }) => {
                 :
                 <p>
                     <a className='AddAnswerForm-link' onClick={()=>onSignIn()}>{t("commentsForm.logIn")}</a>
-                    , {t("answerForm.warning")}
+                    {`, ${t("answerForm.warning")} `}
                     <a className='AddAnswerForm-cancel' onClick={()=>onCancel()}>{t("answerForm.cancel")}</a>
                 </p>
         }
