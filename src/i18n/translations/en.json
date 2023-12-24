@@ -27,6 +27,7 @@
   "session.signOut": "Sign Out",
   "commentsForm.logIn":"Log in",
   "commentsForm.send":"Send",
+  "commentsForm.emptyWarning":"Fill in the field",
   "answerForm.title":"New answer",
   "answerForm.placeholder":"Enter the answer",
   "answerForm.cancel":"Cancel",

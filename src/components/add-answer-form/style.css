@@ -25,6 +25,13 @@
     font-size: 14px;
     font-weight: 400;
 }
+
+.AddAnswerForm-warning{
+    grid-column: 1/3;
+
+    margin: 0;
+}
+
 .AddCommentForm-button {
     width: min-content;
 }

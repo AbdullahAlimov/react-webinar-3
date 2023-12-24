@@ -13,12 +13,19 @@
     font-weight: 700;
 }
 .AddCommentForm-input {
+    grid-column: 1/2;
+
     resize: none;
 
     padding: 5px;
     
     font-size: 14px;
     font-weight: 400;
+}
+.AddCommentForm-warning{
+    grid-column: 1/2;
+
+    margin: 0;
 }
 .AddCommentForm-button {
     width: min-content;

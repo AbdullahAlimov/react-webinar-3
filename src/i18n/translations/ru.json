@@ -29,6 +29,7 @@
   "session.signOut": "Выход",
   "commentsForm.logIn":"Войдите",
   "commentsForm.send":"Отправить",
+  "commentsForm.emptyWarning":"Заполните поле",
   "answerForm.title":"Новый ответ",
   "answerForm.placeholder":"Введите ответ",
   "answerForm.cancel":"Отмена",
