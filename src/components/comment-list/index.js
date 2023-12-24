@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import "./style.css"
 
 
-function CommentList({ list, exists, lang, t, onChangeParent, onResetParent, onSignIn, onAdd }) {
+function CommentList({ list, exists, lang, t, profileId ,onChangeParent, onResetParent, onSignIn, onAdd }) {
 
     const [answerFormInfo, setAnswerFormInfo] = useState({ parent: {}, place: {} })
 
@@ -54,6 +54,7 @@ function CommentList({ list, exists, lang, t, onChangeParent, onResetParent, onS
                             <div style={{ marginLeft: item.depth * 30 }}>
                                 <Comment
                                     id={item.id}
+                                    isCommentThisProfile={profileId===item.author._id}
                                     index={index}
                                     lang={lang}
                                     t={t}
@@ -87,6 +88,7 @@ function CommentList({ list, exists, lang, t, onChangeParent, onResetParent, onS
 CommentList.propTypes = {
     list: PropTypes.array,
     exists: PropTypes.bool,
+    profileId:PropTypes.string,
     onChangeParent: PropTypes.func,
     onResetParent: PropTypes.func,
     onSignIn: PropTypes.func,

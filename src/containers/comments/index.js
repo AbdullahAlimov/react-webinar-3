@@ -18,11 +18,14 @@ const Comments = ({articleId}) => {
     const dispatch = useDispatch();
     const {t,lang}=useTranslate();
 
-    const select = useReduxSelector(state => ({
+    const selectRedux = useReduxSelector(state => ({
         comments: state.comments.items,
         waiting: state.comments.waiting,
     }))
-    const exists = useSelector(state => state.session.exists)
+    const select = useSelector(state =>({
+        exists: state.session.exists,
+        profileId:state.session.user._id
+    }))
 
     const [selectParent, setSelectParent] = useState({
         _id: articleId,
@@ -57,30 +60,30 @@ const Comments = ({articleId}) => {
     }
 
     const lists = {
-        comment: useMemo(() => ((treeToList(listToTree(select.comments), (item, level) => (
+        comment: useMemo(() => ((treeToList(listToTree(selectRedux.comments), (item, level) => (
             {
                 id: item._id,
                 author: item.author,
                 date: item.dateCreate,
-                depth: level-1,
+                depth: level<12 ? level-1 : 12,
                 content: item.text
             }
-        )))).slice(1),[select.comments]),
+        )))).slice(1),[selectRedux.comments]),
     };
 return (
-    <Spinner active={select.waiting}>
+    <Spinner active={selectRedux.waiting}>
         <CommentList
             list={lists.comment}
-            exists={exists}
+            exists={select.exists}
             lang={lang}
             t={t}
-            parent={selectParent}
+            profileId={select.profileId}
             onChangeParent={callbacks.changeSelectParent}
             onAdd={callbacks.addComment}
             onResetParent={callbacks.resetParent}
             onSignIn={callbacks.onSignIn}>
         </CommentList>
-        {selectParent._id===articleId && <AddCommentForm exists={exists} onSignIn={callbacks.onSignIn} onAdd={callbacks.addComment} t={t}></AddCommentForm>}
+        {selectParent._id===articleId && <AddCommentForm exists={select.exists} onSignIn={callbacks.onSignIn} onAdd={callbacks.addComment} t={t}></AddCommentForm>}
     </Spinner>
 );
 };
