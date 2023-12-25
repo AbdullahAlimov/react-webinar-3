@@ -3,6 +3,7 @@ import Comment from '../comment';
 import AddAnswerForm from '../add-answer-form';
 import PropTypes from 'prop-types';
 import "./style.css"
+import scrollToElement from '../../utils/scroll-to-element';
 
 
 function CommentList({ list, exists, lang, t, profileId ,onChangeParent, onResetParent, onSignIn, onAdd }) {
@@ -12,10 +13,7 @@ function CommentList({ list, exists, lang, t, profileId ,onChangeParent, onReset
     const answerFormRef = useRef(null);
 
     useEffect(() => {
-        answerFormRef.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-        });
+        scrollToElement(answerFormRef)
     }, [answerFormInfo])
 
     const renders = {

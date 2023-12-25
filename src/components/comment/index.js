@@ -1,25 +1,13 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import "./style.css"
+import dateFormat from '../../utils/date-format';
 
 function Comment({ name, lang,t, index,isCommentThisProfile, date, content, id, onChangeParent }) {
-    const dateOptions = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-    };
-
-    const formattedDate = new Date(date).toLocaleDateString(lang, dateOptions);
-    const year = new Date(date).getFullYear();
-
-    const finalFormattedDate = formattedDate.replace(` ${year} г.`, ` ${year}`);
-
     return (
         <div className='Comment'>
             <p className={`Comment-name ${isCommentThisProfile && "thisProfile"}`}>{name}</p>
-            <p className='Comment-date'>{finalFormattedDate}</p>
+            <p className='Comment-date'>{dateFormat(new Date(date),lang)}</p>
             <p className='Comment-text'>{content}</p>
             <button className='Comment-button' onClick={() => {onChangeParent(id,index)}}>{t("comment.answer")}</button>
         </div>
